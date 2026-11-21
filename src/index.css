@@ -1,0 +1,284 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: #02050C;
+    color: #F8FAFC;
+    font-size: 16px;
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: clip;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  @media (min-width: 640px) {
+    html {
+      font-size: 17px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    html {
+      font-size: 18px;
+    }
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', 'Outfit', system-ui, -apple-system, sans-serif;
+    background-color: #02050C;
+    color: #F8FAFC;
+    font-size: 1.0625rem;
+    line-height: 1.68;
+    letter-spacing: 0.006em;
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: clip;
+    margin: 0;
+  }
+
+  #root {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: clip;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  .font-display {
+    font-family: 'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif;
+    letter-spacing: -0.01em;
+    overflow-wrap: break-word;
+  }
+
+  p,
+  li {
+    font-weight: 500;
+    overflow-wrap: break-word;
+  }
+}
+
+/* High-legibility responsive typography scale that fits 360px Phone, 768px Tablet, and 1440px Desktop without horizontal overflow */
+.text-\[8px\],
+.text-\[9px\],
+.text-\[9\.5px\] {
+  font-size: 0.8125rem !important;
+  line-height: 1.25rem !important;
+}
+
+.text-\[10px\] {
+  font-size: 0.85rem !important;
+  line-height: 1.3rem !important;
+}
+
+.text-\[11px\] {
+  font-size: 0.9rem !important;
+  line-height: 1.38rem !important;
+}
+
+.text-xs {
+  font-size: 0.94rem !important;
+  line-height: 1.45rem !important;
+}
+
+.text-sm {
+  font-size: 1.06rem !important;
+  line-height: 1.62rem !important;
+}
+
+.text-base {
+  font-size: 1.16rem !important;
+  line-height: 1.76rem !important;
+}
+
+.text-lg {
+  font-size: 1.28rem !important;
+  line-height: 1.88rem !important;
+}
+
+.text-xl {
+  font-size: 1.42rem !important;
+  line-height: 2.02rem !important;
+}
+
+@media (max-width: 639px) {
+  /* Keep mobile headings & pills cleanly inside 360px-390px phone screens while keeping body text large & readable */
+  h1.text-4xl {
+    font-size: 2.15rem !important;
+    line-height: 1.15 !important;
+  }
+
+  h2.text-3xl {
+    font-size: 1.75rem !important;
+    line-height: 1.22 !important;
+  }
+
+  .text-\[8px\],
+  .text-\[9px\],
+  .text-\[9\.5px\],
+  .text-\[10px\] {
+    font-size: 0.78rem !important;
+    line-height: 1.18rem !important;
+  }
+
+  .text-\[11px\] {
+    font-size: 0.82rem !important;
+    line-height: 1.24rem !important;
+  }
+
+  .text-xs {
+    font-size: 0.88rem !important;
+    line-height: 1.35rem !important;
+  }
+
+  .text-sm {
+    font-size: 1.02rem !important;
+    line-height: 1.56rem !important;
+  }
+
+  .text-base {
+    font-size: 1.08rem !important;
+    line-height: 1.65rem !important;
+  }
+}
+
+.text-slate-400 {
+  color: #D8E2EE !important;
+}
+
+.text-slate-300 {
+  color: #EEF2F6 !important;
+}
+
+/* Cinematic glassmorphic transparency on alternating sections so the scroll-reactive logo gradient flows behind every page */
+main > section.bg-charcoal-900\/80,
+main > section.bg-charcoal-900\/70 {
+  background: linear-gradient(
+    135deg,
+    rgba(7, 17, 36, 0.58) 0%,
+    rgba(4, 12, 26, 0.46) 50%,
+    rgba(8, 25, 52, 0.58) 100%
+  ) !important;
+  backdrop-filter: blur(8px);
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Custom subtle scrollbars matching Lumora cyan-sapphire logo gradient */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #02050C;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #0099FF 0%, #00D2FF 100%);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #00D2FF 0%, #E5A93C 100%);
+}
+
+/* Custom range input styling for interactive sliders — high-visibility glowing track + thumb */
+input[type="range"].lumora-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 12px;
+  border-radius: 9999px;
+  background: linear-gradient(
+    90deg,
+    rgba(56, 189, 248, 0.55) 0%,
+    rgba(245, 158, 11, 0.85) 50%,
+    rgba(0, 210, 255, 0.65) 100%
+  ) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.38);
+  box-shadow:
+    inset 0 1px 3px rgba(0, 0, 0, 0.65),
+    0 0 14px rgba(245, 158, 11, 0.25);
+  cursor: pointer;
+}
+
+input[type="range"].lumora-range::-webkit-slider-runnable-track {
+  height: 10px;
+  border-radius: 9999px;
+  background: linear-gradient(
+    90deg,
+    rgba(56, 189, 248, 0.55) 0%,
+    rgba(245, 158, 11, 0.85) 50%,
+    rgba(0, 210, 255, 0.65) 100%
+  );
+}
+
+input[type="range"].lumora-range::-moz-range-track {
+  height: 10px;
+  border-radius: 9999px;
+  background: linear-gradient(
+    90deg,
+    rgba(56, 189, 248, 0.55) 0%,
+    rgba(245, 158, 11, 0.85) 50%,
+    rgba(0, 210, 255, 0.65) 100%
+  );
+  border: 1.5px solid rgba(255, 255, 255, 0.38);
+}
+
+input[type="range"].lumora-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 26px;
+  width: 26px;
+  border-radius: 9999px;
+  background: #F59E0B;
+  border: 3px solid #FFFFFF;
+  box-shadow: 0 0 16px rgba(245, 158, 11, 0.85), 0 2px 6px rgba(0, 0, 0, 0.8);
+  margin-top: -9px;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+input[type="range"].lumora-range::-moz-range-thumb {
+  height: 26px;
+  width: 26px;
+  border-radius: 9999px;
+  background: #F59E0B;
+  border: 3px solid #FFFFFF;
+  box-shadow: 0 0 16px rgba(245, 158, 11, 0.85), 0 2px 6px rgba(0, 0, 0, 0.8);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+input[type="range"].lumora-range::-webkit-slider-thumb:hover {
+  transform: scale(1.12);
+  background: #FBBF24;
+}
+
+input[type="range"].lumora-range:focus-visible {
+  outline: 2px solid #22D3EE;
+  outline-offset: 4px;
+}
