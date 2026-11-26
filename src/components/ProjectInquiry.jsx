@@ -664,7 +664,7 @@ export default function ProjectInquiryModal() {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto bg-black/80 backdrop-blur-md"
+      className="fixed inset-0 z-50 flex items-start sm:items-center justify-center p-3 sm:p-6 overflow-y-auto bg-black/80 backdrop-blur-md"
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-inquiry-title"
@@ -674,7 +674,7 @@ export default function ProjectInquiryModal() {
         onClick={closeInquiry}
         aria-hidden="true"
       />
-      <div className="relative z-10 w-full max-w-2xl rounded-3xl bg-charcoal-900 border border-white/15 shadow-[0_25px_70px_rgba(0,0,0,0.85)] overflow-hidden my-auto max-h-[92vh] flex flex-col">
+      <div className="relative z-10 w-full max-w-2xl rounded-3xl bg-charcoal-900 border border-white/15 shadow-[0_25px_70px_rgba(0,0,0,0.85)] overflow-hidden my-4 sm:my-auto max-h-[88dvh] sm:max-h-[92vh] flex flex-col">
         {/* Modal Header */}
         <div className="px-5 sm:px-8 py-5 bg-charcoal-950/80 border-b border-white/10 flex items-center justify-between gap-4 shrink-0">
           <div>
