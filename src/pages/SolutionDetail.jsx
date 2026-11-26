@@ -10,6 +10,7 @@ import {
   ShieldCheck,
 } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
+import ProductCatalogueSection from '../components/ProductCatalogueSection';
 import FAQAccordion from '../components/FAQAccordion';
 import SceneSwitchKeypadDemo from '../components/interactions/SceneSwitchKeypadDemo';
 import CurtainMotorDemo from '../components/interactions/CurtainMotorDemo';
@@ -148,6 +149,9 @@ export default function SolutionDetail() {
           {renderInteractiveSection()}
         </div>
       </section>
+
+      {/* 2B. PRODUCT HARDWARE CATALOGUE FOR THIS CATEGORY */}
+      <ProductCatalogueSection categorySlug={product.slug} />
 
       {/* 3. PLAIN-LANGUAGE FEATURE LIST & SIZE / MODULE OPTIONS */}
       <section className="py-16 md:py-24 bg-charcoal-900/70 border-y border-white/10">

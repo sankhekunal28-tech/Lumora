@@ -4,6 +4,7 @@ import SEOHead from '../components/SEOHead';
 import MagneticProductCard from '../components/interactions/MagneticProductCard';
 import AnimatedFullHomeCard from '../components/interactions/AnimatedFullHomeCard';
 import InteractiveFloorPlan from '../components/interactions/InteractiveFloorPlan';
+import ProductCatalogueSection from '../components/ProductCatalogueSection';
 import FAQAccordion from '../components/FAQAccordion';
 import { PRODUCT_CATEGORIES } from '../data/siteData';
 import { useInquiry } from '../context/InquiryContext';
@@ -52,6 +53,9 @@ export default function SolutionsHub() {
           </div>
         </div>
       </section>
+
+      {/* Complete Filterable Product Catalogue */}
+      <ProductCatalogueSection />
 
       {/* Interactive Floor Plan (@Interaction5) */}
       <section className="pb-20">
