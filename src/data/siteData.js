@@ -617,6 +617,39 @@ export const SAMPLE_FAQ = [
 export const SAMPLE_FOUNDER_STORY =
   'Lumora Smart Tech was founded in 2025 by Kunal Sankhe on a simple belief: a smart home shouldn’t feel complicated.';
 
+export const LEADERSHIP_TEAM = [
+  {
+    id: 'kunal-sankhe',
+    name: 'Kunal Sankhe',
+    role: 'Founder & Visionary',
+    badge: 'Founder • Est. 2025',
+    highlight: 'Product Vision & Smart-Home Engineering',
+    photo: '/assets/reference/founder-kunal-sankhe.jpg',
+    accent: 'amber',
+    bio: 'Founded Lumora Smart Tech in 2025 to make architectural, wireless home automation effortless and dependable across Indian residences — uniting phone, keypad, and voice control without rewiring.',
+  },
+  {
+    id: 'sneha-sankhe',
+    name: 'Sneha Sankhe',
+    role: 'Co-Founder — Sales & Marketing',
+    badge: 'Architect • 300+ Homes Shaped',
+    highlight: 'Architectural Design, Sales & Marketing',
+    photo: '/assets/reference/team-sneha-sankhe.jpg',
+    accent: 'cyan',
+    bio: 'An architect by profession who has helped shape over 300+ homes, Sneha bridges interior design and smart-home technology — ensuring every Lumora keypad, curtain track, and lighting scene elevates the architecture while leading Sales & Marketing.',
+  },
+  {
+    id: 'rohit-narkar',
+    name: 'Rohit Narkar',
+    role: 'Head of Operations',
+    badge: '15+ Years Experience',
+    highlight: 'PAN-India Execution & Commissioning',
+    photo: '/assets/reference/team-rohit-narkar.jpg',
+    accent: 'amber',
+    bio: 'Bringing over 15+ years of operational and delivery leadership, Rohit oversees site assessments, technician training, quality assurance, and seamless PAN-India installation handovers.',
+  },
+];
+
 export const OUR_PROCESS_STEPS = [
   {
     step: '01',

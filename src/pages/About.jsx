@@ -2,7 +2,12 @@ import React from 'react';
 import { ShieldCheck, Sparkles, MapPin, Users, ArrowRight, Gem } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import LumoraLogo from '../components/LumoraLogo';
-import { COMPANY_FACTS, SAMPLE_FOUNDER_STORY, SAMPLE_TRUST_METRICS } from '../data/siteData';
+import {
+  COMPANY_FACTS,
+  SAMPLE_FOUNDER_STORY,
+  SAMPLE_TRUST_METRICS,
+  LEADERSHIP_TEAM,
+} from '../data/siteData';
 import { useInquiry } from '../context/InquiryContext';
 
 export default function About() {
@@ -92,6 +97,80 @@ export default function About() {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Leadership Team Section (Kunal Sankhe, Sneha Sankhe, Rohit Narkar) */}
+      <section className="py-20 border-t border-white/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-14">
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-electric">
+              Leadership Team
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-display font-bold text-white mt-2">
+              The People Behind Lumora Smart Tech
+            </h2>
+            <p className="mt-3 text-slate-300 text-sm sm:text-base">
+              Combining smart-home engineering, architectural sensibility, and 15+ years of operational execution to deliver seamless residences across India.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-7">
+            {LEADERSHIP_TEAM.map((member) => {
+              const isAmber = member.accent === 'amber';
+              return (
+                <div
+                  key={member.id}
+                  className={`rounded-3xl bg-gradient-to-b from-[#071428] via-charcoal-900 to-[#040B16] border ${
+                    isAmber ? 'border-amber-gold/35' : 'border-cyan-electric/35'
+                  } overflow-hidden shadow-[0_25px_70px_rgba(0,0,0,0.75)] flex flex-col group`}
+                >
+                  <div className="relative aspect-[4/4.5] w-full overflow-hidden bg-charcoal-950">
+                    <img
+                      src={member.photo}
+                      alt={`${member.name} — ${member.role} at ${COMPANY_FACTS.name}`}
+                      loading="lazy"
+                      className="w-full h-full object-cover object-top group-hover:scale-[1.03] transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#040B16] via-[#040B16]/25 to-transparent" />
+                    <div className="absolute top-4 left-4">
+                      <span
+                        className={`px-3 py-1 rounded-full bg-[#02060D]/85 backdrop-blur-md border text-[11px] font-mono uppercase tracking-widest ${
+                          isAmber
+                            ? 'border-amber-gold/45 text-amber-gold'
+                            : 'border-cyan-electric/45 text-cyan-electric'
+                        }`}
+                      >
+                        {member.badge}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between space-y-4 border-t border-white/10">
+                    <div className="space-y-2">
+                      <span
+                        className={`text-xs font-mono uppercase tracking-widest ${
+                          isAmber ? 'text-amber-gold' : 'text-cyan-electric'
+                        }`}
+                      >
+                        {member.role}
+                      </span>
+                      <h3 className="text-2xl font-display font-extrabold text-white">
+                        {member.name}
+                      </h3>
+                      <p className="text-xs sm:text-sm text-slate-300 leading-relaxed pt-1">
+                        {member.bio}
+                      </p>
+                    </div>
+
+                    <div className="pt-3 border-t border-white/10 text-[11px] font-mono uppercase tracking-wider text-slate-400">
+                      {member.highlight}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
