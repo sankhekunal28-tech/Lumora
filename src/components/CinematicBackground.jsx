@@ -24,17 +24,35 @@ export default function CinematicBackground() {
   const progressBeamRef = useRef(null);
 
   useEffect(() => {
+    // Detect iOS / iPadOS / touch-mobile devices to prevent WebKit GPU memory exhaustion & scroll freezes
+    const isTouchOrIOS =
+      typeof window !== 'undefined' &&
+      (window.matchMedia('(max-width: 1024px)').matches ||
+        /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+        (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1));
+
     let rafId = null;
     let currentScroll = window.scrollY || 0;
     let targetScroll = window.scrollY || 0;
 
     const updateScrollTransforms = () => {
-      // Smooth interpolation for cinematic inertia while scrolling
-      currentScroll += (targetScroll - currentScroll) * 0.12;
       const maxScroll = Math.max(
         1,
         document.documentElement.scrollHeight - window.innerHeight
       );
+
+      // Lightweight path for iOS / Mobile / Tablet: only update the top progress bar (zero heavy GPU layer thrashing)
+      if (isTouchOrIOS) {
+        const progress = Math.min(1, Math.max(0, targetScroll / maxScroll));
+        if (progressBeamRef.current) {
+          progressBeamRef.current.style.transform = `scaleX(${progress.toFixed(4)})`;
+        }
+        rafId = null;
+        return;
+      }
+
+      // Smooth interpolation for desktop cinematic inertia while scrolling
+      currentScroll += (targetScroll - currentScroll) * 0.12;
       const progress = Math.min(1, Math.max(0, currentScroll / maxScroll));
 
       // 1. Primary Logo Cyan/Sapphire Aurora Orb — moves diagonally & shifts scale with scroll
@@ -156,10 +174,10 @@ export default function CinematicBackground() {
           }
         `}</style>
 
-        {/* 1. Primary Logo-Matched Electric Cyan & Deep Sapphire Gradient Nebula */}
+        {/* 1. Primary Logo-Matched Electric Cyan & Deep Sapphire Gradient Nebula (Desktop only — avoids iOS WebKit GPU crash) */}
         <div
           ref={orbPrimaryRef}
-          className="absolute -top-[18vh] left-[12vw] w-[78vw] h-[78vw] max-w-[920px] max-h-[920px] rounded-full will-change-transform"
+          className="hidden lg:block absolute -top-[18vh] left-[12vw] w-[78vw] h-[78vw] max-w-[920px] max-h-[920px] rounded-full will-change-transform"
           style={{
             background:
               'radial-gradient(circle at 40% 40%, rgba(0, 210, 255, 0.24) 0%, rgba(0, 128, 255, 0.15) 36%, rgba(8, 36, 78, 0.08) 62%, transparent 76%)',
@@ -168,10 +186,10 @@ export default function CinematicBackground() {
           }}
         />
 
-        {/* 2. Secondary Deep Sapphire & Metallic Silver Rim Nebula (Counter-Scrolling) */}
+        {/* 2. Secondary Deep Sapphire & Metallic Silver Rim Nebula (Desktop only) */}
         <div
           ref={orbSecondaryRef}
-          className="absolute top-[28vh] right-[4vw] w-[72vw] h-[72vw] max-w-[860px] max-h-[860px] rounded-full will-change-transform"
+          className="hidden lg:block absolute top-[28vh] right-[4vw] w-[72vw] h-[72vw] max-w-[860px] max-h-[860px] rounded-full will-change-transform"
           style={{
             background:
               'radial-gradient(circle at 60% 50%, rgba(56, 189, 248, 0.20) 0%, rgba(14, 116, 214, 0.14) 38%, rgba(226, 232, 240, 0.05) 58%, transparent 75%)',
@@ -179,10 +197,10 @@ export default function CinematicBackground() {
           }}
         />
 
-        {/* 3. Subtle Warm Architectural Interior Glow (Balances Cyan with Luxury Warmth) */}
+        {/* 3. Subtle Warm Architectural Interior Glow (Desktop only) */}
         <div
           ref={orbWarmRef}
-          className="absolute top-[42vh] left-[28vw] w-[55vw] h-[55vw] max-w-[680px] max-h-[680px] rounded-full will-change-transform"
+          className="hidden lg:block absolute top-[42vh] left-[28vw] w-[55vw] h-[55vw] max-w-[680px] max-h-[680px] rounded-full will-change-transform"
           style={{
             background:
               'radial-gradient(circle at 50% 50%, rgba(245, 158, 11, 0.10) 0%, rgba(0, 180, 255, 0.08) 45%, transparent 72%)',
@@ -190,10 +208,10 @@ export default function CinematicBackground() {
           }}
         />
 
-        {/* 4. Scrolling Architectural Cyber-Mesh Grid Layer */}
+        {/* 4. Scrolling Architectural Cyber-Mesh Grid Layer (Desktop only) */}
         <div
           ref={gridLayerRef}
-          className="absolute -inset-[120px] opacity-30 will-change-transform"
+          className="hidden lg:block absolute -inset-[120px] opacity-30 will-change-transform"
           style={{
             backgroundImage: `
               linear-gradient(to right, rgba(56, 189, 248, 0.07) 1px, transparent 1px),
@@ -207,10 +225,10 @@ export default function CinematicBackground() {
           }}
         />
 
-        {/* 5. Logo-Inspired Giant Rotating Neon-Cyan Orbital Ring (Right Viewport) */}
+        {/* 5. Logo-Inspired Giant Rotating Neon-Cyan Orbital Ring (Desktop only) */}
         <div
           ref={ringRightRef}
-          className="absolute -top-[180px] -right-[220px] w-[640px] h-[640px] sm:w-[780px] sm:h-[780px] rounded-full opacity-45 will-change-transform"
+          className="hidden lg:block absolute -top-[180px] -right-[220px] w-[640px] h-[640px] sm:w-[780px] sm:h-[780px] rounded-full opacity-45 will-change-transform"
         >
           <svg viewBox="0 0 600 600" className="w-full h-full">
             <defs>
@@ -244,10 +262,10 @@ export default function CinematicBackground() {
           </svg>
         </div>
 
-        {/* 6. Logo-Inspired Counter-Rotating Neon-Cyan Orbital Ring (Bottom-Left Viewport) */}
+        {/* 6. Logo-Inspired Counter-Rotating Neon-Cyan Orbital Ring (Desktop only) */}
         <div
           ref={ringLeftRef}
-          className="absolute -bottom-[240px] -left-[240px] w-[620px] h-[620px] sm:w-[760px] sm:h-[760px] rounded-full opacity-40 will-change-transform"
+          className="hidden lg:block absolute -bottom-[240px] -left-[240px] w-[620px] h-[620px] sm:w-[760px] sm:h-[760px] rounded-full opacity-40 will-change-transform"
         >
           <svg viewBox="0 0 600 600" className="w-full h-full">
             <defs>
@@ -271,11 +289,11 @@ export default function CinematicBackground() {
           </svg>
         </div>
 
-        {/* 7. Subtle Center Parallax Metallic Chevron Emblem Watermark */}
+        {/* 7. Subtle Center Parallax Metallic Chevron Emblem Watermark (Desktop only) */}
         <div
           ref={chevronWatermarkRef}
           style={{ left: '50%', top: '52%' }}
-          className="absolute w-[460px] h-[460px] sm:w-[640px] sm:h-[640px] opacity-[0.045] will-change-transform"
+          className="hidden lg:block absolute w-[460px] h-[460px] sm:w-[640px] sm:h-[640px] opacity-[0.045] will-change-transform"
         >
           <svg viewBox="0 0 200 200" fill="none" className="w-full h-full">
             <path

@@ -186,8 +186,8 @@ export default function Navbar() {
         <nav
           id="mobile-nav-drawer"
           aria-label="Mobile Navigation"
-          style={{ backgroundColor: '#030814' }}
-          className="lg:hidden bg-[#030814] border-b border-white/15 px-4 pt-3 pb-6 max-h-[calc(100vh-5rem)] overflow-y-auto shadow-2xl"
+          style={{ backgroundColor: '#030814', WebkitOverflowScrolling: 'touch' }}
+          className="lg:hidden bg-[#030814] border-b border-white/15 px-4 pt-3 pb-8 max-h-[calc(100dvh-5rem)] overflow-y-auto shadow-2xl"
         >
           <div className="space-y-1">
             {navLinks.map((item) => (
